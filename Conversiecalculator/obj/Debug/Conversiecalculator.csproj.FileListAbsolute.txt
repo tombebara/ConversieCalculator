@@ -13,3 +13,9 @@ C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\Conversiecalculator\o
 C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\Conversiecalculator\obj\Debug\Conversiecalculator.csproj.CoreCompileInputs.cache
 C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\Conversiecalculator\obj\Debug\Conversiecalculator.exe
 C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\Conversiecalculator\obj\Debug\Conversiecalculator.pdb
+C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\ConversieCalc\Conversiecalculator\obj\Debug\Conversiecalculator.csproj.AssemblyReference.cache
+C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\ConversieCalc\Conversiecalculator\obj\Debug\Conversiecalculator.csproj.SuggestedBindingRedirects.cache
+C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\ConversieCalc\Conversiecalculator\obj\Debug\App.g.cs
+C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\ConversieCalc\Conversiecalculator\obj\Debug\Conversiecalculator_MarkupCompile.cache
+C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\ConversieCalc\Conversiecalculator\obj\Debug\Conversiecalculator.exe
+C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\ConversieCalc\Conversiecalculator\obj\Debug\Conversiecalculator.pdb
