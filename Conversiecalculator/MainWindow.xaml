@@ -1,0 +1,43 @@
+﻿<Window x:Class="Conversiecalculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Conversie Calculator" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300">
+            </ColumnDefinition>
+            <ColumnDefinition Width="300">
+            </ColumnDefinition>
+            <ColumnDefinition Width="*">
+            </ColumnDefinition>
+            
+        </Grid.ColumnDefinitions>
+        <Label Content="Conversie Calculator" 
+               HorizontalAlignment="Center" 
+               VerticalAlignment="Center" 
+               FontSize="30" 
+               Foreground="Brown" 
+               FontFamily="Helvetica"/>
+        <StackPanel Grid.Row="0" Grid.Column="2" 
+                    Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Right"
+                    Margin="40, 10">
+            <Button  Width="30" Height="30"/>
+            <TextBlock >Light || Dark</TextBlock>
+        </StackPanel>
+        
+        <Button Grid.Row="1" Grid.Column="0"  Width="100" Height="30" Content="Geld converteren"></Button>
+        <Button Grid.Row="1" Grid.Column="1"  Width="100" Height="30" Content="Binair converteren"></Button>
+        <Button Grid.Row="1" Grid.Column="2"  Width="100" Height="30" Content="Graden converteren"></Button>
+     
+            
+        
+    </Grid>
+</Window>
