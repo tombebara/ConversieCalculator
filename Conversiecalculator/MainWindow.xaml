@@ -43,7 +43,7 @@
         </Grid>
         <StackPanel Grid.Row="1">
             <StackPanel Orientation="Horizontal" 
-                        Height="40" 
+                        Height="50" 
                         HorizontalAlignment="Center">
                 <Button x:Name="moneyConversion"
                         Content="Geld converteren"
@@ -69,6 +69,18 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" 
+                        HorizontalAlignment="Center">
+                <TextBlock Text="Resultaat: "
+                           Foreground="LightGray"
+                           FontSize="22"/>
+                <TextBlock Name="conversionResult"
+                         Width="150"
+                         Height="25"
+                         Foreground="LightGray"
+                         FontSize="22"/>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" 
                         HorizontalAlignment="Center"
                         Height="100">
                 <TextBox x:Name="userInput"
@@ -91,20 +103,7 @@
                     </Menu>
                 </ToolBar>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" 
-                        HorizontalAlignment="Center"
-                        Height="170">
-                <TextBlock Text="Geconverteerde getal: "
-                           Foreground="LightGray"
-                           FontSize="22"/>
-                <TextBlock x:Name="conversionResult"
-                         Width="150"
-                         Height="25"
-                         Foreground="LightGray"
-                         FontSize="22"
-                           VerticalAlignment="Top"
-                           Margin="0, 1"/>
-            </StackPanel>
+            
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center">
                 <Button x:Name="conversionHistory"
@@ -120,7 +119,8 @@
                         Width="150"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
-                        Margin="10"/>
+                        Margin="10"
+                        Click="convertInput_Click"/>
                 <Button x:Name="resetConversion"
                         Content="Reset"
                         Height="25"

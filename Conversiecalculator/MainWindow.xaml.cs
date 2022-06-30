@@ -9,5 +9,10 @@
         {
             InitializeComponent();
         }
+
+        private void convertInput_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            conversionResult.Text = "Geconverteerd";
+        }
     }
 }
