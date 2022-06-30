@@ -8,3 +8,5 @@ Conversiecalculator/bin/Debug/Conversiecalculator.exe
 *.cache
 *.cs
 *.cs
+Conversiecalculator/.vs/Conversiecalculator/v17/.suo
+Conversiecalculator/obj/Debug/MainWindow.g.i.cs
