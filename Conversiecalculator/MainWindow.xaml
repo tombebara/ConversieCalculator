@@ -9,126 +9,167 @@
         Height="450"
         WindowStartupLocation="CenterScreen"
         Background="#181735">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+    <TabControl Name="Main" TabStripPlacement="Top">
+        <TabItem Name="TiMoney" Header="Geld converteren">
+            <Grid Background="#181735">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
-        <Grid Grid.ColumnSpan="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="Conversie Calculator"
+                <Grid Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Conversie Calculator"
                        Foreground="LightGray"
                        Grid.Column="1"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        FontFamily="Helvetica"
                        FontSize="22"/>
-            <Button x:Name="lightOrDark" 
+
+                    <Button Name="LightOrDark" 
                     Grid.Column="2" 
-                    Height="18" 
-                    Width="18"
+                    Height="25" 
+                    Width="25"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right"
                     Margin="5, 5 "/>
 
-        </Grid>
-        <StackPanel Grid.Row="1">
-            <StackPanel Orientation="Horizontal" 
-                        Height="50" 
-                        HorizontalAlignment="Center">
-                <Button x:Name="moneyConversion"
-                        Content="Geld converteren"
-                        Height="25"
-                        Width="150"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        Margin="10"/>
-                <Button x:Name="binaryConversion"
-                        Content="Binair converteren"
-                        Height="25"
-                        Width="150"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        Margin="10"/>
-                <Button x:Name="degreeConversion"
-                        Content="Graden converteren"
-                        Height="25"
-                        Width="150"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        Margin="10"/>
-            </StackPanel>
+                </Grid>
 
-            <StackPanel Orientation="Horizontal" 
-                        HorizontalAlignment="Center">
-                <TextBlock Text="Resultaat: "
+                <StackPanel Grid.Row="1">
+                    <StackPanel Orientation="Horizontal" 
+                        HorizontalAlignment="Center"
+                        Height="40">
+                        <TextBlock Text="Resultaat: "
                            Foreground="LightGray"
-                           FontSize="22"/>
-                <TextBlock Name="conversionResult"
-                         Width="150"
-                         Height="25"
+                           FontSize="22">
+                        </TextBlock>
+
+                        <Label Name="ConversionResult"
                          Foreground="LightGray"
-                         FontSize="22"/>
-            </StackPanel>
-            
-            <StackPanel Orientation="Horizontal" 
+                         FontSize="22"></Label>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Bottom"
+                            >
+                        <Label Content="Vul hier het getal in:"
+                           Foreground="LightGray"
+                           FontSize="16"
+                           Margin="0,0,0,0"/>
+                        <Label Content="Van:"
+                           Foreground="LightGray"
+                           FontSize="16"
+                           Margin="0,0,70,0"/>
+
+                        <Label Content="Naar:"
+                           Foreground="LightGray"
+                           FontSize="16"
+                           Margin="80,0,00,0"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" 
                         HorizontalAlignment="Center"
-                        Height="100">
-                <TextBox x:Name="userInput"
+                        
+                        VerticalAlignment="Top">
+                        <TextBox Name="UserInputValue"
                          Width="150"
                          Height="25"
-                         Margin="10"/>
-                <ToolBar Height="25">
-                    <Menu Width="150">
-                        <MenuItem Header="Menu">
-                            <MenuItem Header="MenuItem1"/>
-                        </MenuItem>
-                    </Menu>
-                    <Button x:Name="swapDropdown"
-                            Height="18"
-                            Width="18"/>
-                    <Menu Width="150">
-                        <MenuItem Header="Menu">
-                            <MenuItem Header="MenuItem1"/>
-                        </MenuItem>
-                    </Menu>
-                </ToolBar>
-            </StackPanel>
-            
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center">
-                <Button x:Name="conversionHistory"
-                        Content="Conversie geschiedenis"
-                        Height="25"
-                        Width="150"
-                        VerticalAlignment="Center"
+                         Margin="10"
+                         PreviewTextInput="NumbersOnly"/>
+
+                        <ComboBox Width="150"
+                              Name="CmbFromValue" Margin="10"
+                              Height="25" MaxDropDownHeight="150">
+                        </ComboBox>
+
+                        <Button Name="SwapCmbValues" FontSize="14"
+                            Height="25"
+                            Width="25" Margin="10"
+                        Click="SwapCmbValues_Click">
+
+                        </Button>
+                        <ComboBox Width="150" FontSize="14"
+                              Name="CmbToValue"
+                              Height="25" MaxDropDownHeight="150" Margin="10"></ComboBox>
+                    </StackPanel>
+
+
+                    <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center"
-                        Margin="10"/>
-                <Button x:Name="convertInput"
+                        Height="200">
+                        <Button Name="Convert"
                         Content="Converteer"
                         Height="25"
                         Width="150"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
                         Margin="10"
-                        Click="convertInput_Click"/>
-                <Button x:Name="resetConversion"
+                        Click="ConvertInput_Click"/>
+                        <Button Name="ResetConversion"
                         Content="Reset"
                         Height="25"
                         Width="150"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
-                        Margin="10"/>
-            </StackPanel>
-        </StackPanel>
-    </Grid>
+                        Margin="10"
+                        Click="ResetConversion_Click"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+        <TabItem Name="TiBinary" Header="Binair converteren">
+
+        </TabItem>
+        <TabItem Name="TiHistory" Header="Conversie geschiedenis">
+            <Grid Background="#181735">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="48*"/>
+                        <ColumnDefinition Width="181*"/>
+                        <ColumnDefinition Width="36*"/>
+                        <ColumnDefinition Width="265*"/>
+                        <ColumnDefinition Width="265*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Conversie geschiedenis"
+                       Foreground="LightGray"
+                       Grid.Column="3"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontFamily="Helvetica"
+                       FontSize="22"/>
+                    <Button Name="LightOrDarkTwo" 
+                    Grid.Column="2" 
+                    Height="25" 
+                    Width="25"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Margin="5, 5 "/>
+                </Grid>
+            </Grid>
+
+        </TabItem>
+    </TabControl>
+
 </Window>

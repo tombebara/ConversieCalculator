@@ -1,25 +1,3 @@
-C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\Conversiecalculator\bin\Debug\Conversiecalculator.exe.config
-C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\Conversiecalculator\bin\Debug\Conversiecalculator.exe
-C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\Conversiecalculator\bin\Debug\Conversiecalculator.pdb
-C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\Conversiecalculator\obj\Debug\Conversiecalculator.csproj.AssemblyReference.cache
-C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\Conversiecalculator\obj\Debug\Conversiecalculator.csproj.SuggestedBindingRedirects.cache
-C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\Conversiecalculator\obj\Debug\MainWindow.g.cs
-C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\Conversiecalculator\obj\Debug\App.g.cs
-C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\Conversiecalculator\obj\Debug\Conversiecalculator_MarkupCompile.cache
-C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\Conversiecalculator\obj\Debug\MainWindow.baml
-C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\Conversiecalculator\obj\Debug\Conversiecalculator.g.resources
-C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\Conversiecalculator\obj\Debug\Conversiecalculator.Properties.Resources.resources
-C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\Conversiecalculator\obj\Debug\Conversiecalculator.csproj.GenerateResource.cache
-C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\Conversiecalculator\obj\Debug\Conversiecalculator.csproj.CoreCompileInputs.cache
-C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\Conversiecalculator\obj\Debug\Conversiecalculator.exe
-C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\Conversiecalculator\obj\Debug\Conversiecalculator.pdb
-C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\ConversieCalc\Conversiecalculator\obj\Debug\Conversiecalculator.csproj.AssemblyReference.cache
-C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\ConversieCalc\Conversiecalculator\obj\Debug\Conversiecalculator.csproj.SuggestedBindingRedirects.cache
-C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\ConversieCalc\Conversiecalculator\obj\Debug\App.g.cs
-C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\ConversieCalc\Conversiecalculator\obj\Debug\Conversiecalculator_MarkupCompile.cache
-C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\ConversieCalc\Conversiecalculator\obj\Debug\Conversiecalculator.exe
-C:\Users\tombo\OneDrive\Desktop\school\ConversieCalculator\ConversieCalc\Conversiecalculator\obj\Debug\Conversiecalculator.pdb
-<<<<<<< HEAD
 C:\school\ConversieCalc\Conversiecalculator\bin\Debug\Conversiecalculator.exe.config
 C:\school\ConversieCalc\Conversiecalculator\bin\Debug\Conversiecalculator.exe
 C:\school\ConversieCalc\Conversiecalculator\bin\Debug\Conversiecalculator.pdb
@@ -35,20 +13,3 @@ C:\school\ConversieCalc\Conversiecalculator\obj\Debug\Conversiecalculator.csproj
 C:\school\ConversieCalc\Conversiecalculator\obj\Debug\Conversiecalculator.csproj.CoreCompileInputs.cache
 C:\school\ConversieCalc\Conversiecalculator\obj\Debug\Conversiecalculator.exe
 C:\school\ConversieCalc\Conversiecalculator\obj\Debug\Conversiecalculator.pdb
-=======
-C:\Users\tombo\Desktop\school\Concersie calculator\ConversieCalculator\Conversiecalculator\obj\Debug\Conversiecalculator.csproj.AssemblyReference.cache
-C:\Users\tombo\Desktop\school\Concersie calculator\ConversieCalculator\Conversiecalculator\obj\Debug\Conversiecalculator.csproj.SuggestedBindingRedirects.cache
-C:\Users\tombo\Desktop\school\Concersie calculator\ConversieCalculator\Conversiecalculator\obj\Debug\MainWindow.baml
-C:\Users\tombo\Desktop\school\Concersie calculator\ConversieCalculator\Conversiecalculator\obj\Debug\MainWindow.g.cs
-C:\Users\tombo\Desktop\school\Concersie calculator\ConversieCalculator\Conversiecalculator\obj\Debug\App.g.cs
-C:\Users\tombo\Desktop\school\Concersie calculator\ConversieCalculator\Conversiecalculator\obj\Debug\Conversiecalculator_MarkupCompile.cache
-C:\Users\tombo\Desktop\school\Concersie calculator\ConversieCalculator\Conversiecalculator\obj\Debug\Conversiecalculator.g.resources
-C:\Users\tombo\Desktop\school\Concersie calculator\ConversieCalculator\Conversiecalculator\obj\Debug\Conversiecalculator.Properties.Resources.resources
-C:\Users\tombo\Desktop\school\Concersie calculator\ConversieCalculator\Conversiecalculator\obj\Debug\Conversiecalculator.csproj.GenerateResource.cache
-C:\Users\tombo\Desktop\school\Concersie calculator\ConversieCalculator\Conversiecalculator\obj\Debug\Conversiecalculator.csproj.CoreCompileInputs.cache
-C:\Users\tombo\Desktop\school\Concersie calculator\ConversieCalculator\Conversiecalculator\obj\Debug\Conversiecalculator.exe
-C:\Users\tombo\Desktop\school\Concersie calculator\ConversieCalculator\Conversiecalculator\obj\Debug\Conversiecalculator.pdb
-C:\Users\tombo\Desktop\school\Concersie calculator\ConversieCalculator\Conversiecalculator\bin\Debug\Conversiecalculator.exe.config
-C:\Users\tombo\Desktop\school\Concersie calculator\ConversieCalculator\Conversiecalculator\bin\Debug\Conversiecalculator.exe
-C:\Users\tombo\Desktop\school\Concersie calculator\ConversieCalculator\Conversiecalculator\bin\Debug\Conversiecalculator.pdb
->>>>>>> 721cb47c15ac26193d7392b36ba46968a60ef99e
