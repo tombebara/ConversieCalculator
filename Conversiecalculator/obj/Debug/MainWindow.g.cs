@@ -64,7 +64,7 @@ namespace Conversiecalculator {
         #line hidden
         
         
-        #line 49 "..\..\MainWindow.xaml"
+        #line 53 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox UserInput;
         

@@ -29,9 +29,10 @@
                FontFamily="Helvetica" Height="46" Width="288"/>
         <StackPanel Grid.Column="2" Margin="5,0,0,0"
                     Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Left" >
-            <Button  Width="30" Height="30"/>
+            <Button  Width="25" Height="25"/>
             <TextBlock >Light || Dark</TextBlock>
         </StackPanel>
+        
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" >
             <StackPanel.Resources>
                 <Style TargetType="{x:Type Button}">
@@ -39,10 +40,31 @@
                 </Style>
             </StackPanel.Resources>
             <Button Name="ConvertCash" Content="Geld converteren"/>
-            <Button Name="ConvertBinary" Content="Binair converteren" Height="20"/>
+            <Button Name="ConvertBinary" Content="Binair converteren"/>
             <Button Name="ConvertDegree"  Content="Graden converteren"/>
         </StackPanel>
+        
+        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" >
+            
+            <TextBox Name="UserInput" Width="100">
+            </TextBox>
+            <ToolBar>
+                <Menu>
+                    <MenuItem Header="Menu">
+                        <MenuItem Header="MenuItem1"/>
+                    </MenuItem>
+                </Menu>
+            </ToolBar>
+            <ToolBar>
+                <Menu>
+                    <MenuItem Header="Menu">
+                        <MenuItem Header="MenuItem1"/>
+                    </MenuItem>
+                </Menu>
+            </ToolBar>
 
+        </StackPanel>
+    
 
     </Grid>
 </Window>
