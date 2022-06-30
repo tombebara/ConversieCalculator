@@ -4,12 +4,20 @@
 winexe
 C#
 .cs
+<<<<<<< HEAD
 C:\school\ConversieCalc\Conversiecalculator\obj\Debug\
+=======
+C:\Users\tombo\Desktop\school\Concersie calculator\ConversieCalculator\Conversiecalculator\obj\Debug\
+>>>>>>> 721cb47c15ac26193d7392b36ba46968a60ef99e
 Conversiecalculator
 none
 false
 DEBUG;TRACE
+<<<<<<< HEAD
 C:\school\ConversieCalc\Conversiecalculator\App.xaml
+=======
+C:\Users\tombo\Desktop\school\Concersie calculator\ConversieCalculator\Conversiecalculator\App.xaml
+>>>>>>> 721cb47c15ac26193d7392b36ba46968a60ef99e
 1219584333
 
 4614991736

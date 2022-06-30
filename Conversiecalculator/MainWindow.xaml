@@ -25,7 +25,6 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-
             <TextBlock Text="Conversie Calculator"
                        Foreground="LightGray"
                        Grid.Column="1"
@@ -92,9 +91,7 @@
                         </MenuItem>
                     </Menu>
                 </ToolBar>
-
             </StackPanel>
-
             <StackPanel Orientation="Horizontal" 
                         HorizontalAlignment="Center"
                         Height="170">
@@ -109,8 +106,7 @@
                            VerticalAlignment="Top"
                            Margin="0, 1"
                            />
-            </StackPanel>
-
+                </StackPanel>
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center">
                 <Button x:Name="conversionHistory"
@@ -135,9 +131,7 @@
                         HorizontalAlignment="Center"
                         Margin="10"/>
             </StackPanel>
-
-
-
         </StackPanel>
+          
     </Grid>
 </Window>
