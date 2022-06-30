@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Windows;
 
@@ -9,11 +10,24 @@ namespace Conversiecalculator
     /// </summary>
     public partial class MainWindow
     {
+        //Create object for SqlConnection
+        SqlConnection con = new SqlConnection();
+        //Create object for SqlCommand
+        SqlCommand cmd = new SqlCommand();
+        //Create object for sqldataadapater
+        SqlDataAdapter adapter = new SqlDataAdapter();
+        //Create
+        Sqlcaller Sqlcaller;
+
+
+
+
         public MainWindow()
         {
             InitializeComponent();
             BindValues();
         }
+
 
         //Displays combobox items in a new datatable
         private void BindValues()
@@ -31,7 +45,7 @@ namespace Conversiecalculator
             dtValues.Rows.Add("USD", 3);
             dtValues.Rows.Add("POUND", 6);
 
-            
+
             CmbFromValue.ItemsSource = dtValues.DefaultView;
             CmbFromValue.DisplayMemberPath = "Text";
             CmbFromValue.SelectedValuePath = "Value";
@@ -57,7 +71,7 @@ namespace Conversiecalculator
                 return;
             }
             //Checks if a correct item from the ToComboBox is selected
-           else if (CmbFromValue.SelectedIndex == 0 || CmbFromValue.SelectedValue == null)
+            else if (CmbFromValue.SelectedIndex == 0 || CmbFromValue.SelectedValue == null)
             {
                 MessageBox.Show("Selecteer juiste conversie van", "Foute invoer", MessageBoxButton.OK, MessageBoxImage.Error);
                 CmbFromValue.Focus();
@@ -81,13 +95,19 @@ namespace Conversiecalculator
             else
             {
                 ConvertedValue = (double.Parse(CmbFromValue.SelectedValue.ToString()) *
-                    double.Parse(UserInputValue.Text)) / 
+                    double.Parse(UserInputValue.Text)) /
                     double.Parse(CmbToValue.SelectedValue.ToString());
 
-                ConversionResult.Content = CmbToValue.Text + " " + ConvertedValue.ToString("N2");
+                ConversionResult.Content = ConvertedValue.ToString("N2") + " " + CmbToValue.Text;
+                double InputValues = double.Parse(UserInputValue.Text);
+                string FromValues = CmbFromValue.Text;
+                string ToValues = CmbToValue.Text;
+                double Results = ConvertedValue;
+
+                // Sqlcaller.InsertIntoDb(InputValues, FromValues, ToValues, Results);
             }
 
-      
+
         }
 
         //clears all fields on click and calls the method ClearControls()
@@ -105,7 +125,7 @@ namespace Conversiecalculator
 
         private void SwapCmbValues_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            
+
         }
 
         //
@@ -120,5 +140,14 @@ namespace Conversiecalculator
             UserInputValue.Focus();
         }
 
+        private void DeleteHistory_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DgConversionHistory_SelectedCellsChanged(object sender, System.Windows.Controls.SelectedCellsChangedEventArgs e)
+        {
+
+        }
     }
 }

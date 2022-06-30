@@ -167,6 +167,58 @@
                     HorizontalAlignment="Right"
                     Margin="5, 5 "/>
                 </Grid>
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <DataGrid Name="DgConversionHistory" AutoGenerateColumns="False" 
+                              CanUserAddRows="False"
+                               VerticalScrollBarVisibility="Auto"
+                              Height="250">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn x:Name="HistoryUserInputs" 
+                                                Header="Ingevoerde getal:" 
+                                                Width="100" 
+                                                CanUserResize="False"
+                                                IsReadOnly="True"
+                                                CanUserReorder="False"
+                                                Binding="{Binding Path=UserInput}">
+                            </DataGridTextColumn><DataGridTextColumn x:Name="HistoryFromValues" 
+                                                Header="Van" 
+                                                Width="100" 
+                                                CanUserResize="False"
+                                                IsReadOnly="True"
+                                                CanUserReorder="False"
+                                                Binding="{Binding Path=FromValue}">
+                            </DataGridTextColumn><DataGridTextColumn x:Name="HistoryToValues" 
+                                                Header="Naar" 
+                                                Width="100" 
+                                                CanUserResize="False"
+                                                IsReadOnly="True"
+                                                CanUserReorder="False"
+                                                Binding="{Binding Path=UserInput}">
+                            </DataGridTextColumn><DataGridTextColumn x:Name="HistoryResults" 
+                                                Header="Resultaat" 
+                                                Width="100" 
+                                                CanUserResize="False"
+                                                IsReadOnly="True"
+                                                CanUserReorder="False"
+                                                Binding="{Binding Path=UserInput}">
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                        
+                    </DataGrid>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                    <Button Name="DeleteHistory"
+                        Content="Verwijder Geschiedenis"
+                        Height="25"
+                        Width="150"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Center"
+                        Margin="10"
+                        Click="DeleteHistory_Click"/>
+                </StackPanel>
+
+
             </Grid>
 
         </TabItem>
