@@ -4,45 +4,140 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Conversie Calculator" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" Height="197">
+        Title="Conversie Calculator"
+        Width="800"
+        Height="450"
+        WindowStartupLocation="CenterScreen"
+        Background="#181735">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-
-
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label Content="Conversie Calculator" 
-               Grid.Row="0"
-               HorizontalAlignment="Center" 
-               VerticalAlignment="Center" 
-               FontSize="30" 
-               Foreground="Brown" 
-               FontFamily="Helvetica" Height="46" Width="288"/>
-        <StackPanel Grid.Column="2" Margin="5,0,0,0"
-                    Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Left" >
-            <Button  Width="30" Height="30"/>
-            <TextBlock >Light || Dark</TextBlock>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" >
-            <StackPanel.Resources>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Margin" Value="8"/>
-                </Style>
-            </StackPanel.Resources>
-            <Button Name="ConvertCash" Content="Geld converteren"/>
-            <Button Name="ConvertBinary" Content="Binair converteren" Height="20"/>
-            <Button Name="ConvertDegree"  Content="Graden converteren"/>
-        </StackPanel>
+
+        <Grid Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Conversie Calculator"
+                       Foreground="LightGray"
+                       Grid.Column="1"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontFamily="Helvetica"
+                       FontSize="22"/>
+            <Button x:Name="lightOrDark" 
+                    Grid.Column="2" 
+                    Height="18" 
+                    Width="18"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Margin="5, 5 "/>
+
+        </Grid>
+
+        <StackPanel Grid.Row="1">
+            <StackPanel Orientation="Horizontal" 
+                        Height="40" 
+                        HorizontalAlignment="Center">
+                <Button x:Name="moneyConversion"
+                        Content="Geld converteren"
+                        Height="25"
+                        Width="150"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Margin="10"/>
+                <Button x:Name="binaryConversion"
+                        Content="Binair converteren"
+                        Height="25"
+                        Width="150"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Margin="10"/>
+                <Button x:Name="degreeConversion"
+                        Content="Graden converteren"
+                        Height="25"
+                        Width="150"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Margin="10"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" 
+                        HorizontalAlignment="Center"
+                        Height="100">
+                <TextBox x:Name="userInput"
+                         Width="150"
+                         Height="25"
+                         Margin="10"/>
+                <ToolBar Height="25">
+                    <Menu Width="150">
+                        <MenuItem Header="Menu">
+                            <MenuItem Header="MenuItem1"/>
+                        </MenuItem>
+                    </Menu>
+                    <Button x:Name="swapDropdown"
+                            Height="18"
+                            Width="18"/>
+                    <Menu Width="150">
+                        <MenuItem Header="Menu">
+                            <MenuItem Header="MenuItem1"/>
+                        </MenuItem>
+                    </Menu>
+                </ToolBar>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" 
+                        HorizontalAlignment="Center"
+                        Height="170">
+                <TextBlock Text="Geconverteerde getal: "
+                           Foreground="LightGray"
+                           FontSize="22"/>
+                <TextBlock x:Name="conversionResult"
+                         Width="150"
+                         Height="25"
+                         Foreground="LightGray"
+                         FontSize="22"
+                           VerticalAlignment="Top"
+                           Margin="0, 1"
+                           />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <Button x:Name="conversionHistory"
+                        Content="Conversie geschiedenis"
+                        Height="25"
+                        Width="150"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Margin="10"/>
+                <Button x:Name="convertInput"
+                        Content="Converteer"
+                        Height="25"
+                        Width="150"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Margin="10"/>
+                <Button x:Name="resetConversion"
+                        Content="Reset"
+                        Height="25"
+                        Width="150"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Margin="10"/>
+            </StackPanel>
 
 
+
+        </StackPanel>
     </Grid>
 </Window>
