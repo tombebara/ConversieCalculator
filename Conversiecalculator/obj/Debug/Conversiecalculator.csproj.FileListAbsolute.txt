@@ -13,3 +13,5 @@ C:\school\ConversieCalc\Conversiecalculator\obj\Debug\Conversiecalculator.csproj
 C:\school\ConversieCalc\Conversiecalculator\obj\Debug\Conversiecalculator.csproj.CoreCompileInputs.cache
 C:\school\ConversieCalc\Conversiecalculator\obj\Debug\Conversiecalculator.exe
 C:\school\ConversieCalc\Conversiecalculator\obj\Debug\Conversiecalculator.pdb
+C:\school\ConversieCalc\Conversiecalculator\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\school\ConversieCalc\Conversiecalculator\obj\Debug\Conversiecalculator_MarkupCompile.lref

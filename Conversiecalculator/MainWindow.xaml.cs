@@ -10,24 +10,54 @@ namespace Conversiecalculator
     /// </summary>
     public partial class MainWindow
     {
-        //Create object for SqlConnection
         SqlConnection con = new SqlConnection();
-        //Create object for SqlCommand
         SqlCommand cmd = new SqlCommand();
-        //Create object for sqldataadapater
         SqlDataAdapter adapter = new SqlDataAdapter();
-        //Create
-        Sqlcaller Sqlcaller;
 
-
+        //double InputValues = 0;
+        //string FromValues = "";
+        //string ToValues = "";
+        //double Results = 0;
 
 
         public MainWindow()
         {
             InitializeComponent();
             BindValues();
+            BindConversions();
         }
 
+        public void DbConnect()
+        {
+            string connectionString;
+            SqlConnection con;
+
+            connectionString = @"Data Source=DESKTOP-BRHFHS4;Initial Catalog=Conversies;Integrated Security=True";
+            con = new SqlConnection(connectionString);
+            con.Open();
+        }
+
+        private void BindConversions()
+        {
+            DbConnect();
+            DataTable history = new DataTable();
+            DataColumn InputValues = new DataColumn("InputValues", typeof(double));
+            DataColumn FromValues = new DataColumn("FromValues", typeof(string));
+            DataColumn ToValues = new DataColumn("ToValues", typeof(string));
+            DataColumn Results = new DataColumn("Results", typeof(double));
+            DataRow firstRow = history.NewRow();
+            firstRow[0] = 1;
+            firstRow[1] = 2;
+            firstRow[2] = 3;
+            firstRow[3] = 4;
+            cmd = new SqlCommand("SELECT Id, InputValues, FromValues, ToValues, Results FROM ConversieHistory", con);
+            cmd.CommandType = CommandType.Text;
+            adapter = new SqlDataAdapter(cmd);
+            adapter.Fill(history);
+            con.Close();
+
+
+        }
 
         //Displays combobox items in a new datatable
         private void BindValues()
@@ -99,12 +129,16 @@ namespace Conversiecalculator
                     double.Parse(CmbToValue.SelectedValue.ToString());
 
                 ConversionResult.Content = ConvertedValue.ToString("N2") + " " + CmbToValue.Text;
-                double InputValues = double.Parse(UserInputValue.Text);
-                string FromValues = CmbFromValue.Text;
-                string ToValues = CmbToValue.Text;
-                double Results = ConvertedValue;
+                //double InputValues = double.Parse(UserInputValue.Text);
+                //string FromValues = CmbFromValue.Text;
+                //string ToValues = CmbToValue.Text;
+                //double Results = ConvertedValue;
 
-                // Sqlcaller.InsertIntoDb(InputValues, FromValues, ToValues, Results);
+                DbConnect();
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "INSERT INTO [ConversieHistory](InputValues, FromValue, ToValues, Results) " +
+                    "VALUES (@UserInputValue, @CmbFromValue, @CmbToValue, @ConvertedValue)";
+                cmd.Parameters.AddWithValue("@UserInputValue", UserInputValue.Text);
             }
 
 
@@ -145,9 +179,5 @@ namespace Conversiecalculator
 
         }
 
-        private void DgConversionHistory_SelectedCellsChanged(object sender, System.Windows.Controls.SelectedCellsChangedEventArgs e)
-        {
-
-        }
     }
 }

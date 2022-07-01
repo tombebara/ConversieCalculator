@@ -1,16 +1,21 @@
-﻿<Window x:Class="Conversiecalculator.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Conversiecalculator" x:Class="Conversiecalculator.MainWindow"
         mc:Ignorable="d"
         Title="Conversie Calculator"
         Width="800"
         Height="450"
         WindowStartupLocation="CenterScreen"
-        Background="#181735">
-    <TabControl Name="Main" TabStripPlacement="Top">
-        <TabItem Name="TiMoney" Header="Geld converteren">
+        Background="#181735"
+    xmlns:Data="clr-namespace:System.Data;assembly=System.Data">
+    <Window.Resources>
+        <Data:SchemaSerializationMode x:Key="ConversiesDataSetSchemaSerializationMode1">IncludeSchema</Data:SchemaSerializationMode>
+    </Window.Resources>
+    <TabControl x:Name="Main" TabStripPlacement="Top">
+        <TabItem x:Name="TiMoney" Header="Geld converteren">
             <Grid Background="#181735">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
@@ -36,7 +41,7 @@
                        FontFamily="Helvetica"
                        FontSize="22"/>
 
-                    <Button Name="LightOrDark" 
+                    <Button x:Name="LightOrDark" 
                     Grid.Column="2" 
                     Height="25" 
                     Width="25"
@@ -52,12 +57,11 @@
                         Height="40">
                         <TextBlock Text="Resultaat: "
                            Foreground="LightGray"
-                           FontSize="22">
-                        </TextBlock>
+                           FontSize="22"/>
 
-                        <Label Name="ConversionResult"
+                        <Label x:Name="ConversionResult"
                          Foreground="LightGray"
-                         FontSize="22"></Label>
+                         FontSize="22"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" 
@@ -83,33 +87,30 @@
                         HorizontalAlignment="Center"
                         
                         VerticalAlignment="Top">
-                        <TextBox Name="UserInputValue"
+                        <TextBox x:Name="UserInputValue"
                          Width="150"
                          Height="25"
                          Margin="10"
                          PreviewTextInput="NumbersOnly"/>
 
                         <ComboBox Width="150"
-                              Name="CmbFromValue" Margin="10"
-                              Height="25" MaxDropDownHeight="150">
-                        </ComboBox>
+                              x:Name="CmbFromValue" Margin="10"
+                              Height="25" MaxDropDownHeight="150"/>
 
-                        <Button Name="SwapCmbValues" FontSize="14"
+                        <Button x:Name="SwapCmbValues" FontSize="14"
                             Height="25"
                             Width="25" Margin="10"
-                        Click="SwapCmbValues_Click">
-
-                        </Button>
+                        Click="SwapCmbValues_Click"/>
                         <ComboBox Width="150" FontSize="14"
-                              Name="CmbToValue"
-                              Height="25" MaxDropDownHeight="150" Margin="10"></ComboBox>
+                              x:Name="CmbToValue"
+                              Height="25" MaxDropDownHeight="150" Margin="10"/>
                     </StackPanel>
 
 
                     <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center"
                         Height="200">
-                        <Button Name="Convert"
+                        <Button x:Name="Convert"
                         Content="Converteer"
                         Height="25"
                         Width="150"
@@ -117,7 +118,7 @@
                         HorizontalAlignment="Center"
                         Margin="10"
                         Click="ConvertInput_Click"/>
-                        <Button Name="ResetConversion"
+                        <Button x:Name="ResetConversion"
                         Content="Reset"
                         Height="25"
                         Width="150"
@@ -129,10 +130,8 @@
                 </StackPanel>
             </Grid>
         </TabItem>
-        <TabItem Name="TiBinary" Header="Binair converteren">
-
-        </TabItem>
-        <TabItem Name="TiHistory" Header="Conversie geschiedenis">
+        <TabItem x:Name="TiBinary" Header="Binair converteren"/>
+        <TabItem x:Name="TiHistory" Header="Conversie geschiedenis">
             <Grid Background="#181735">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
@@ -159,7 +158,7 @@
                        HorizontalAlignment="Center"
                        FontFamily="Helvetica"
                        FontSize="22"/>
-                    <Button Name="LightOrDarkTwo" 
+                    <Button x:Name="LightOrDarkTwo" 
                     Grid.Column="2" 
                     Height="25" 
                     Width="25"
@@ -168,47 +167,48 @@
                     Margin="5, 5 "/>
                 </Grid>
                 <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <DataGrid Name="DgConversionHistory" AutoGenerateColumns="False" 
+                    <DataGrid x:Name="DgConversionHistory" AutoGenerateColumns="False" 
                               CanUserAddRows="False"
                                VerticalScrollBarVisibility="Auto"
                               Height="250">
                         <DataGrid.Columns>
-                            <DataGridTextColumn x:Name="HistoryUserInputs" 
+                            <DataGridTextColumn  
                                                 Header="Ingevoerde getal:" 
                                                 Width="100" 
                                                 CanUserResize="False"
                                                 IsReadOnly="True"
-                                                CanUserReorder="False"
-                                                Binding="{Binding Path=UserInput}">
-                            </DataGridTextColumn><DataGridTextColumn x:Name="HistoryFromValues" 
+                                                CanUserReorder="False"/>
+                            <DataGridTextColumn  
                                                 Header="Van" 
                                                 Width="100" 
                                                 CanUserResize="False"
                                                 IsReadOnly="True"
-                                                CanUserReorder="False"
-                                                Binding="{Binding Path=FromValue}">
-                            </DataGridTextColumn><DataGridTextColumn x:Name="HistoryToValues" 
+                                                CanUserReorder="False"/>
+                            <DataGridTextColumn 
                                                 Header="Naar" 
                                                 Width="100" 
                                                 CanUserResize="False"
                                                 IsReadOnly="True"
                                                 CanUserReorder="False"
-                                                Binding="{Binding Path=UserInput}">
-                            </DataGridTextColumn><DataGridTextColumn x:Name="HistoryResults" 
+                                                Binding="{Binding UserInput}"/>
+                            <DataGridTextColumn x:Name="HistoryResults" 
                                                 Header="Resultaat" 
                                                 Width="100" 
                                                 CanUserResize="False"
                                                 IsReadOnly="True"
                                                 CanUserReorder="False"
-                                                Binding="{Binding Path=UserInput}">
-                            </DataGridTextColumn>
+                                                Binding="{Binding UserInput}"/>
                         </DataGrid.Columns>
-                        
+
+                        <DataGrid.DataContext>
+                            <local:ConversiesDataSet RemotingFormat="Xml" SchemaSerializationMode="{StaticResource ConversiesDataSetSchemaSerializationMode1}" CaseSensitive="False"/>
+                        </DataGrid.DataContext>
+
                     </DataGrid>
                 </StackPanel>
                 <StackPanel Grid.Row="1" Orientation="Horizontal"
                         HorizontalAlignment="Center">
-                    <Button Name="DeleteHistory"
+                    <Button x:Name="DeleteHistory"
                         Content="Verwijder Geschiedenis"
                         Height="25"
                         Width="150"
