@@ -13,3 +13,10 @@ C:\school\ConversieCalc\Conversiecalculator\obj\Debug\Conversiecalculator.csproj
 C:\school\ConversieCalc\Conversiecalculator\obj\Debug\Conversiecalculator.csproj.CoreCompileInputs.cache
 C:\school\ConversieCalc\Conversiecalculator\obj\Debug\Conversiecalculator.exe
 C:\school\ConversieCalc\Conversiecalculator\obj\Debug\Conversiecalculator.pdb
+C:\school\ConversieCalc\Conversiecalculator\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\school\ConversieCalc\Conversiecalculator\obj\Debug\Conversiecalculator_MarkupCompile.lref
+C:\school\ConversieCalc\Conversiecalculator\bin\Debug\EntityFramework.dll
+C:\school\ConversieCalc\Conversiecalculator\bin\Debug\EntityFramework.SqlServer.dll
+C:\school\ConversieCalc\Conversiecalculator\bin\Debug\EntityFramework.xml
+C:\school\ConversieCalc\Conversiecalculator\bin\Debug\EntityFramework.SqlServer.xml
+C:\school\ConversieCalc\Conversiecalculator\obj\Debug\Conversiecalculator.csproj.CopyComplete
