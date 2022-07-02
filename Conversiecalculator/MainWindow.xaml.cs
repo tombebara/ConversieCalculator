@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 
@@ -37,6 +38,36 @@ namespace Conversiecalculator
             con.Open();
         }
 
+        public void FillHistory()
+        {
+            using (var db = new Model1())
+            {
+                //Read
+                DataTable dt = new DataTable();
+                DataRow dr;
+                dt.Columns.Add("InputValues", typeof(double));
+                dt.Columns.Add("FromValues", typeof(string));
+                dt.Columns.Add("ToValues", typeof(string));
+                dt.Columns.Add("Results", typeof(double));
+                int i = 0;
+                var query = from p in db.ConversieHistory
+                            orderby p.Id
+                            select p;
+                foreach (var item in query)
+                {
+                    dr = dt.NewRow();
+                    dt.Rows.Add(dr);
+                    dt.Rows[i][0] = item.InputValues;
+                    dt.Rows[i][1] = item.FromValues;
+                    dt.Rows[i][2] = item.ToValues;
+                    dt.Rows[i][3] = item.Results;
+                    i++;
+                }
+                DgHistory.ItemsSource = dt.DefaultView;
+
+
+            }
+        }
 
         //Displays combobox items in a new datatable
         private void BindValues()
@@ -124,36 +155,8 @@ namespace Conversiecalculator
                     var FromV = new ConversieHistory { InputValues = IValue, ToValues = TValue, Results = Result, FromValues = FValue };
                     db.ConversieHistory.Add(FromV);
                     db.SaveChanges();
-
-                    //Read
-                    /*DataTable dt = new DataTable();
-                    DataRow dr;
-                    *//*DataColumn col1 = new DataColumn("InputValues", typeof(double));
-                    DataColumn col2 = new DataColumn("ToValues", typeof(string));
-                    DataColumn col3 = new DataColumn("Results", typeof(double));
-                    DataColumn col4 = new DataColumn("FromValues", typeof(string));*//*
-                    dt.Columns.Add("InputValues", typeof(double));
-                    dt.Columns.Add("ToValues", typeof(string));
-                    dt.Columns.Add("Results", typeof(double));
-                    dt.Columns.Add("FromValues", typeof(string));
-                    int i = 0;
-                    var query = from p in db.ConversieHistory
-                                orderby p.Id
-                                select p;
-                    foreach (var item in query)
-                    {
-                        dr = dt.NewRow();
-                        dt.Rows.Add(dr);
-                        dt.Rows[i][] = item.InputValues;
-                        dt.Rows[i][] = item.ToValues;
-                        dt.Rows[i][col3] = item.Results;
-                        dt.Rows[i][col4] = item.FromValues;
-                        i++;
-                    }
-                    this.DgConversionHistory.DataContext = dt;*/
-
-
                 }
+                FillHistory();
             }
 
             // from id input results to
@@ -196,6 +199,16 @@ namespace Conversiecalculator
         private void DgConversionHistory_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void DgConversionHistory_Loaded(object sender, RoutedEventArgs e)
+        {
+            FillHistory();
+        }
+
+        private void DgHistory_Loaded(object sender, RoutedEventArgs e)
+        {
+            FillHistory();
         }
     }
 }
