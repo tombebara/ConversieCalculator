@@ -23,35 +23,39 @@
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="21*"/>
+                    <ColumnDefinition Width="108*"/>
+                    <ColumnDefinition Width="12*"/>
+                    <ColumnDefinition Width="256*"/>
                 </Grid.ColumnDefinitions>
 
-                <Grid Grid.ColumnSpan="2">
+                <Grid Grid.ColumnSpan="4">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="265*"/>
+                        <ColumnDefinition Width="29*"/>
+                        <ColumnDefinition Width="235*"/>
+                        <ColumnDefinition Width="265*"/>
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Text="Conversie Calculator"
                        Foreground="LightGray"
-                       Grid.Column="1"
+                       Grid.Column="2"
                        VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
+                       HorizontalAlignment="Left"
                        FontFamily="Helvetica"
-                       FontSize="22"/>
+                       FontSize="22" Margin="1,0,0,0"/>
 
                     <Button x:Name="LightOrDark" 
-                    Grid.Column="2" 
-                    Height="25" 
+                    Grid.Column="3" 
+                    Height="26" 
                     Width="25"
                     VerticalAlignment="Center"
-                    HorizontalAlignment="Right"
-                    Margin="5, 5 "/>
+                    HorizontalAlignment="Left"
+                    Margin="235,0,0,0"/>
 
                 </Grid>
 
-                <StackPanel Grid.Row="1">
+                <StackPanel Grid.Row="1" Grid.ColumnSpan="4">
                     <StackPanel Orientation="Horizontal" 
                         HorizontalAlignment="Center"
                         Height="40">
@@ -170,7 +174,7 @@
                     <DataGrid x:Name="DgConversionHistory" AutoGenerateColumns="False" 
                               CanUserAddRows="False"
                                VerticalScrollBarVisibility="Auto"
-                              Height="250">
+                              Height="250" SelectionChanged="DgConversionHistory_SelectionChanged">
                         <DataGrid.Columns>
                             <DataGridTextColumn  
                                                 Header="Ingevoerde getal:" 
@@ -201,7 +205,7 @@
                         </DataGrid.Columns>
 
                         <DataGrid.DataContext>
-                            <local:ConversiesDataSet RemotingFormat="Xml" SchemaSerializationMode="{StaticResource ConversiesDataSetSchemaSerializationMode1}" CaseSensitive="False"/>
+                            <local:ConversieHistory/>
                         </DataGrid.DataContext>
 
                     </DataGrid>

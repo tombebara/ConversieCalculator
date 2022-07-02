@@ -13,18 +13,18 @@ namespace Conversiecalculator
         SqlConnection con = new SqlConnection();
         SqlCommand cmd = new SqlCommand();
         SqlDataAdapter adapter = new SqlDataAdapter();
+        Sqlcaller Sqlcaller;
 
-        //double InputValues = 0;
-        //string FromValues = "";
-        //string ToValues = "";
-        //double Results = 0;
-
+        double InputValues = 0;
+        string FromValues = "";
+        string ToValues = "";
+        double Results = 0;
+        private DataRow dr;
 
         public MainWindow()
         {
             InitializeComponent();
             BindValues();
-            BindConversions();
         }
 
         public void DbConnect()
@@ -37,27 +37,6 @@ namespace Conversiecalculator
             con.Open();
         }
 
-        private void BindConversions()
-        {
-            DbConnect();
-            DataTable history = new DataTable();
-            DataColumn InputValues = new DataColumn("InputValues", typeof(double));
-            DataColumn FromValues = new DataColumn("FromValues", typeof(string));
-            DataColumn ToValues = new DataColumn("ToValues", typeof(string));
-            DataColumn Results = new DataColumn("Results", typeof(double));
-            DataRow firstRow = history.NewRow();
-            firstRow[0] = 1;
-            firstRow[1] = 2;
-            firstRow[2] = 3;
-            firstRow[3] = 4;
-            cmd = new SqlCommand("SELECT Id, InputValues, FromValues, ToValues, Results FROM ConversieHistory", con);
-            cmd.CommandType = CommandType.Text;
-            adapter = new SqlDataAdapter(cmd);
-            adapter.Fill(history);
-            con.Close();
-
-
-        }
 
         //Displays combobox items in a new datatable
         private void BindValues()
@@ -129,19 +108,55 @@ namespace Conversiecalculator
                     double.Parse(CmbToValue.SelectedValue.ToString());
 
                 ConversionResult.Content = ConvertedValue.ToString("N2") + " " + CmbToValue.Text;
-                //double InputValues = double.Parse(UserInputValue.Text);
-                //string FromValues = CmbFromValue.Text;
-                //string ToValues = CmbToValue.Text;
-                //double Results = ConvertedValue;
+                string FromValues = CmbFromValue.Text;
+                string ToValues = CmbToValue.Text;
+                double Results = ConvertedValue;
+                double InputValues = double.Parse(UserInputValue.Text);
 
-                DbConnect();
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "INSERT INTO [ConversieHistory](InputValues, FromValue, ToValues, Results) " +
-                    "VALUES (@UserInputValue, @CmbFromValue, @CmbToValue, @ConvertedValue)";
-                cmd.Parameters.AddWithValue("@UserInputValue", UserInputValue.Text);
+                using (var db = new Model1())
+                {
+                    //Create
+                    var FValue = FromValues;
+                    var TValue = ToValues;
+                    var Result = Results;
+                    var IValue = InputValues;
+
+                    var FromV = new ConversieHistory { InputValues = IValue, ToValues = TValue, Results = Result, FromValues = FValue };
+                    db.ConversieHistory.Add(FromV);
+                    db.SaveChanges();
+
+                    //Read
+                    /*DataTable dt = new DataTable();
+                    DataRow dr;
+                    *//*DataColumn col1 = new DataColumn("InputValues", typeof(double));
+                    DataColumn col2 = new DataColumn("ToValues", typeof(string));
+                    DataColumn col3 = new DataColumn("Results", typeof(double));
+                    DataColumn col4 = new DataColumn("FromValues", typeof(string));*//*
+                    dt.Columns.Add("InputValues", typeof(double));
+                    dt.Columns.Add("ToValues", typeof(string));
+                    dt.Columns.Add("Results", typeof(double));
+                    dt.Columns.Add("FromValues", typeof(string));
+                    int i = 0;
+                    var query = from p in db.ConversieHistory
+                                orderby p.Id
+                                select p;
+                    foreach (var item in query)
+                    {
+                        dr = dt.NewRow();
+                        dt.Rows.Add(dr);
+                        dt.Rows[i][] = item.InputValues;
+                        dt.Rows[i][] = item.ToValues;
+                        dt.Rows[i][col3] = item.Results;
+                        dt.Rows[i][col4] = item.FromValues;
+                        i++;
+                    }
+                    this.DgConversionHistory.DataContext = dt;*/
+
+
+                }
             }
 
-
+            // from id input results to
         }
 
         //clears all fields on click and calls the method ClearControls()
@@ -176,8 +191,11 @@ namespace Conversiecalculator
 
         private void DeleteHistory_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
+        private void DgConversionHistory_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
