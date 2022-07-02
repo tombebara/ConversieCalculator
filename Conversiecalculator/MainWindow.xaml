@@ -134,7 +134,47 @@
                 </StackPanel>
             </Grid>
         </TabItem>
-        <TabItem x:Name="TiBinary" Header="Binair converteren"/>
+        <TabItem x:Name="TiBinary" Header="Binair converteren">
+            <Grid Background="#181735">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.ColumnSpan="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Binair Converteren"
+                       Foreground="LightGray"
+                       Grid.Column="1"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontFamily="Helvetica"
+                       FontSize="22" Margin="1,0,0,0"/>
+
+                    <Button x:Name="LightOrDarkThree" 
+                    Grid.Column="3" 
+                    Height="26" 
+                    Width="25"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Margin="235,0,0,0"/>
+
+                </Grid>
+            </Grid>
+
+        </TabItem>
         <TabItem x:Name="TiHistory" Header="Conversie geschiedenis">
             <Grid Background="#181735">
                 <Grid.RowDefinitions>
@@ -168,46 +208,20 @@
                     Width="25"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right"
-                    Margin="5, 5 "/>
+                    Margin="5, 5 ">
+                        <Button.DataContext>
+                            <local:ConversieHistory/>
+                        </Button.DataContext>
+                    </Button>
                 </Grid>
                 <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <DataGrid x:Name="DgConversionHistory" AutoGenerateColumns="False" 
+                    <DataGrid x:Name="DgConversionHistory" 
                               CanUserAddRows="False"
                                VerticalScrollBarVisibility="Auto"
-                              Height="250" SelectionChanged="DgConversionHistory_SelectionChanged">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn  
-                                                Header="Ingevoerde getal:" 
-                                                Width="100" 
-                                                CanUserResize="False"
-                                                IsReadOnly="True"
-                                                CanUserReorder="False"/>
-                            <DataGridTextColumn  
-                                                Header="Van" 
-                                                Width="100" 
-                                                CanUserResize="False"
-                                                IsReadOnly="True"
-                                                CanUserReorder="False"/>
-                            <DataGridTextColumn 
-                                                Header="Naar" 
-                                                Width="100" 
-                                                CanUserResize="False"
-                                                IsReadOnly="True"
-                                                CanUserReorder="False"
-                                                Binding="{Binding UserInput}"/>
-                            <DataGridTextColumn x:Name="HistoryResults" 
-                                                Header="Resultaat" 
-                                                Width="100" 
-                                                CanUserResize="False"
-                                                IsReadOnly="True"
-                                                CanUserReorder="False"
-                                                Binding="{Binding UserInput}"/>
-                        </DataGrid.Columns>
-
+                              Height="250" SelectionChanged="DgConversionHistory_SelectionChanged" Loaded="DgConversionHistory_Loaded" AutoGenerateColumns="False" Width="466" MaxColumnWidth="96">
                         <DataGrid.DataContext>
                             <local:ConversieHistory/>
                         </DataGrid.DataContext>
-
                     </DataGrid>
                 </StackPanel>
                 <StackPanel Grid.Row="1" Orientation="Horizontal"
@@ -221,6 +235,11 @@
                         Margin="10"
                         Click="DeleteHistory_Click"/>
                 </StackPanel>
+                <DataGrid x:Name="DgHistory" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Loaded="DgHistory_Loaded">
+                    <DataGrid.DataContext>
+                        <local:ConversieHistory/>
+                    </DataGrid.DataContext>
+                </DataGrid>
 
 
             </Grid>
