@@ -1,25 +1,14 @@
 ﻿using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
-
 namespace Conversiecalculator
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow
+    public partial class MainWindow : Window
     {
-        SqlConnection con = new SqlConnection();
-        SqlCommand cmd = new SqlCommand();
-        SqlDataAdapter adapter = new SqlDataAdapter();
-        Sqlcaller Sqlcaller;
-
-        double InputValues = 0;
-        string FromValues = "";
-        string ToValues = "";
-        double Results = 0;
         private DataRow dr;
 
         public MainWindow()
@@ -28,27 +17,18 @@ namespace Conversiecalculator
             BindValues();
         }
 
-        public void DbConnect()
-        {
-            string connectionString;
-            SqlConnection con;
-
-            connectionString = @"Data Source=DESKTOP-BRHFHS4;Initial Catalog=Conversies;Integrated Security=True";
-            con = new SqlConnection(connectionString);
-            con.Open();
-        }
-
         public void FillHistory()
         {
             using (var db = new Model1())
             {
                 //Read
+
                 DataTable dt = new DataTable();
                 DataRow dr;
-                dt.Columns.Add("InputValues", typeof(double));
-                dt.Columns.Add("FromValues", typeof(string));
-                dt.Columns.Add("ToValues", typeof(string));
-                dt.Columns.Add("Results", typeof(double));
+                dt.Columns.Add("Invoer", typeof(double));
+                dt.Columns.Add("Van", typeof(string));
+                dt.Columns.Add("Naar", typeof(string));
+                dt.Columns.Add("Resultaat", typeof(double));
                 int i = 0;
                 var query = from p in db.ConversieHistory
                             orderby p.Id
@@ -64,8 +44,14 @@ namespace Conversiecalculator
                     i++;
                 }
                 DgHistory.ItemsSource = dt.DefaultView;
+            }
+        }
 
-
+        public void DeleteConversionHistory()
+        {
+            using (var db = new Model1())
+            {
+                db.Database.ExecuteSqlCommand("TRUNCATE TABLE [ConversieHistory]");
             }
         }
 
@@ -81,9 +67,11 @@ namespace Conversiecalculator
 
             //Add rows in the datatable with text and value
             dtValues.Rows.Add("Selecteer", 0);
-            dtValues.Rows.Add("EUR", 2);
-            dtValues.Rows.Add("USD", 3);
-            dtValues.Rows.Add("POUND", 6);
+            dtValues.Rows.Add("EUR", 1);
+            dtValues.Rows.Add("USD", 1.03);
+            dtValues.Rows.Add("POUND", 0.86);
+            dtValues.Rows.Add("LIR", 17.46);
+            dtValues.Rows.Add("KROON", 10.79);
 
 
             CmbFromValue.ItemsSource = dtValues.DefaultView;
@@ -97,10 +85,12 @@ namespace Conversiecalculator
             CmbToValue.SelectedIndex = 0;
         }
 
+
+
         private void ConvertInput_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             //Creates the variable as ConvertedValue with double datatype to store currency converted value
-            double ConvertedValue;
+            double convertedValue;
 
             //Check if the amount textbox  is null or blank
             if (UserInputValue == null || UserInputValue.Text.Trim() == "")
@@ -128,20 +118,21 @@ namespace Conversiecalculator
             //Checks if the from and to Cmb are the same so no conversion happens and fills ConvertedValue
             if (CmbFromValue.Text == CmbToValue.Text)
             {
-                ConvertedValue = double.Parse(UserInputValue.Text);
-                ConversionResult.Content = CmbToValue.Text + " " + ConvertedValue.ToString("N2");
+                convertedValue = double.Parse(UserInputValue.Text);
+                ConversionResult.Content = CmbToValue.Text + " " + convertedValue.ToString("N2");
             }
             //fills
             else
             {
-                ConvertedValue = (double.Parse(CmbFromValue.SelectedValue.ToString()) *
+                convertedValue = (double.Parse(CmbFromValue.SelectedValue.ToString()) *
                     double.Parse(UserInputValue.Text)) /
                     double.Parse(CmbToValue.SelectedValue.ToString());
 
-                ConversionResult.Content = ConvertedValue.ToString("N2") + " " + CmbToValue.Text;
+                ConversionResult.Content = convertedValue.ToString("N2") + " " + CmbToValue.Text;
                 string FromValues = CmbFromValue.Text;
                 string ToValues = CmbToValue.Text;
-                double Results = ConvertedValue;
+                convertedValue = System.Math.Round(convertedValue, 2);
+                double Results = convertedValue;
                 double InputValues = double.Parse(UserInputValue.Text);
 
                 using (var db = new Model1())
@@ -162,43 +153,36 @@ namespace Conversiecalculator
             // from id input results to
         }
 
-        //clears all fields on click and calls the method ClearControls()
         private void ResetConversion_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             ClearControls();
         }
 
-
+        //restricts the user input to numbers and dots only.
         private void NumbersOnly(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+");
+            Regex regex = new Regex("[^0-9]+[.]");
             e.Handled = regex.IsMatch(e.Text);
         }
 
         private void SwapCmbValues_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            int indexFrom = CmbFromValue.SelectedIndex;
+            int indexTo = CmbToValue.SelectedIndex;
+            CmbToValue.SelectedIndex = indexFrom;
+            CmbFromValue.SelectedIndex = indexTo;
         }
 
-        //
+        //clears every field and sets combobox to default selected index
         private void ClearControls()
         {
             ConversionResult.Content = "";
             UserInputValue.Text = string.Empty;
             if (CmbFromValue.Items.Count > 0)
-                CmbToValue.SelectedIndex = 0;
+                CmbToValue.SelectedIndex = default;
             if (CmbToValue.Items.Count > 0)
-                CmbFromValue.SelectedIndex = 0;
+                CmbFromValue.SelectedIndex = default;
             UserInputValue.Focus();
-        }
-
-        private void DeleteHistory_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void DgConversionHistory_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-
         }
 
         private void DgConversionHistory_Loaded(object sender, RoutedEventArgs e)
@@ -209,6 +193,31 @@ namespace Conversiecalculator
         private void DgHistory_Loaded(object sender, RoutedEventArgs e)
         {
             FillHistory();
+        }
+
+        private void DgConversionHistory_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void DeleteHistory_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Wil je de conversiegeschiedenis verwijderen?",
+            "Verwijderen?", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                DeleteConversionHistory();
+                FillHistory();
+            }
+            else if (result == MessageBoxResult.No)
+            {
+                return;
+            }
+        }
+
+        private void SwapCmbValues_SourceUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
+        {
+
         }
     }
 }
