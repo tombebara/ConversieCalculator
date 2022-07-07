@@ -2,6 +2,9 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+
 namespace Conversiecalculator
 {
     /// <summary>
@@ -16,7 +19,9 @@ namespace Conversiecalculator
             InitializeComponent();
             BindValues();
         }
-
+        /// <summary>
+        /// stores made conversions in datatable
+        /// </summary>
         public void FillHistory()
         {
             using (var db = new Model1())
@@ -46,7 +51,9 @@ namespace Conversiecalculator
                 DgHistory.ItemsSource = dt.DefaultView;
             }
         }
-
+        /// <summary>
+        /// deletes the data from database
+        /// </summary>
         public void DeleteConversionHistory()
         {
             using (var db = new Model1())
@@ -55,7 +62,9 @@ namespace Conversiecalculator
             }
         }
 
-        //Displays combobox items in a new datatable
+        /// <summary>
+        /// fills combobox items with values from datatable
+        /// </summary>
         private void BindValues()
         {
             //Creates new datatable
@@ -73,7 +82,7 @@ namespace Conversiecalculator
             dtValues.Rows.Add("LIR", 17.46);
             dtValues.Rows.Add("KROON", 10.79);
 
-
+            //sets combobox values to use the values from datatable
             CmbFromValue.ItemsSource = dtValues.DefaultView;
             CmbFromValue.DisplayMemberPath = "Text";
             CmbFromValue.SelectedValuePath = "Value";
@@ -120,8 +129,11 @@ namespace Conversiecalculator
             {
                 convertedValue = double.Parse(UserInputValue.Text);
                 ConversionResult.Content = CmbToValue.Text + " " + convertedValue.ToString("N2");
+
             }
-            //fills
+            //if everything is filled in correctly parses the user input to a double and multiply's it with the selected from currency and divides it by the selected to currency
+            //then displays it with the CmbToValue text
+            //stores everything in database
             else
             {
                 convertedValue = (double.Parse(CmbFromValue.SelectedValue.ToString()) *
@@ -129,19 +141,19 @@ namespace Conversiecalculator
                     double.Parse(CmbToValue.SelectedValue.ToString());
 
                 ConversionResult.Content = convertedValue.ToString("N2") + " " + CmbToValue.Text;
-                string FromValues = CmbFromValue.Text;
-                string ToValues = CmbToValue.Text;
+                string fromValues = CmbFromValue.Text;
+                string toValues = CmbToValue.Text;
                 convertedValue = System.Math.Round(convertedValue, 2);
-                double Results = convertedValue;
-                double InputValues = double.Parse(UserInputValue.Text);
+                double results = convertedValue;
+                double inputValues = double.Parse(UserInputValue.Text);
 
                 using (var db = new Model1())
                 {
                     //Create
-                    var FValue = FromValues;
-                    var TValue = ToValues;
-                    var Result = Results;
-                    var IValue = InputValues;
+                    var FValue = fromValues;
+                    var TValue = toValues;
+                    var Result = results;
+                    var IValue = inputValues;
 
                     var FromV = new ConversieHistory { InputValues = IValue, ToValues = TValue, Results = Result, FromValues = FValue };
                     db.ConversieHistory.Add(FromV);
@@ -150,7 +162,6 @@ namespace Conversiecalculator
                 FillHistory();
             }
 
-            // from id input results to
         }
 
         private void ResetConversion_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -159,12 +170,12 @@ namespace Conversiecalculator
         }
 
         //restricts the user input to numbers and dots only.
-        private void NumbersOnly(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+[.]");
-            e.Handled = regex.IsMatch(e.Text);
+            Regex regex = new Regex("^[.][0-9]+$|^[0-9]*[.]{0,1}[0-9]*$");
+            e.Handled = !regex.IsMatch((sender as TextBox)?.Text.Insert((sender as TextBox).SelectionStart, e.Text) ?? string.Empty);
         }
-
+        //swaps combobox values witch eachother
         private void SwapCmbValues_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             int indexFrom = CmbFromValue.SelectedIndex;
@@ -173,7 +184,7 @@ namespace Conversiecalculator
             CmbFromValue.SelectedIndex = indexTo;
         }
 
-        //clears every field and sets combobox to default selected index
+        //clears every field, sets combobox to default selected index and focus the user input field
         private void ClearControls()
         {
             ConversionResult.Content = "";
@@ -185,21 +196,21 @@ namespace Conversiecalculator
             UserInputValue.Focus();
         }
 
-        private void DgConversionHistory_Loaded(object sender, RoutedEventArgs e)
-        {
-            FillHistory();
-        }
-
+        /// <summary>
+        /// fills datagrid when it's loaded
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DgHistory_Loaded(object sender, RoutedEventArgs e)
         {
             FillHistory();
         }
 
-        private void DgConversionHistory_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// show message box, if clicked yes deletes the conversion history
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteHistory_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Wil je de conversiegeschiedenis verwijderen?",
@@ -213,11 +224,6 @@ namespace Conversiecalculator
             {
                 return;
             }
-        }
-
-        private void SwapCmbValues_SourceUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
-        {
-
         }
     }
 }
